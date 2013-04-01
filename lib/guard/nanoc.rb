@@ -35,7 +35,7 @@ module Guard
 
     def recompile
       Dir.chdir(@dir) do
-        site = ::Nanoc::Site.new(@dir)
+        site = ::Nanoc::Site.new('.')
         site.compile
       end
       ::Guard::UI.info 'Compilation succeeded.'

@@ -11,6 +11,7 @@ module Guard
   class Nanoc < Guard
 
     def initialize(watchers=[], options={})
+      @dir = options[:dir] || '.'
       super
     end
 
@@ -33,8 +34,10 @@ module Guard
   protected
 
     def recompile
-      site = ::Nanoc::Site.new('.')
-      site.compile
+      Dir.chdir(@dir) do
+        site = ::Nanoc::Site.new(@dir)
+        site.compile
+      end
       ::Guard::UI.info 'Compilation succeeded.'
     rescue ::Nanoc::Errors::GenericTrivial => e
       ::Guard::UI.error 'Compilation failed! ' + e.message

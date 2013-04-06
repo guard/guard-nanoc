@@ -38,12 +38,23 @@ module Guard
         site = ::Nanoc::Site.new('.')
         site.compile
       end
-      ::Guard::UI.info 'Compilation succeeded.'
+      self.notify_success
     rescue ::Nanoc::Errors::GenericTrivial => e
-      ::Guard::UI.error 'Compilation failed! ' + e.message
+      self.notify_failure
+      $stderr.puts e.message
     rescue Exception => e
-      ::Guard::UI.error 'Compilation failed!'
+      self.notify_failure
       ::Nanoc::CLI::ErrorHandler.print_error(e)
+    end
+
+    def notify_success
+      Notifier.notify('Compilation succeeded', :title => 'nanoc', :image => :success)
+      ::Guard::UI.info 'Compilation succeeded.'
+    end
+
+    def notify_failure
+      Notifier.notify('Compilation FAILED', :title => 'nanoc', :image => :failed)
+      ::Guard::UI.error 'Compilation failed!'
     end
 
   end

@@ -52,10 +52,10 @@ module Guard
                     if is_modified then :update else :identical end
                   end
 
-        level =   if is_created then
+        level =   if is_created or (not is_created and is_modified) then
                     :high
                   else
-                    if is_modified then :high else :low end
+                    :low
                   end
 
         duration = Time.now - @rep_times[rep.raw_path] if @rep_times[rep.raw_path]

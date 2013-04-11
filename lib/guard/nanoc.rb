@@ -17,7 +17,7 @@ module Guard
 
     def start
       self.setup_nanoc_notifications
-      self.recompile
+      self.recompile_in_subprocess
     end
 
     def run_all
@@ -47,6 +47,15 @@ module Guard
         level  = (is_created ? :high   : (is_modified ? :high   : :low))
         duration = Time.now - @rep_times[rep.raw_path] if @rep_times[rep.raw_path]
         ::Nanoc::CLI::Logger.instance.file(level, action, path, duration)
+      end
+    end
+
+    def recompile_in_subprocess
+      if Process.respond_to?(:fork)
+        pid = Process.fork { self.recompile }
+        Process.waitpid(pid)
+      else
+        self.recompile
       end
     end
 

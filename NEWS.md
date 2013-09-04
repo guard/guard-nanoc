@@ -1,6 +1,11 @@
 guard-nanoc Release Notes
 =========================
 
+1.0.2 (???)
+-----------
+
+* Made guard-nanoc honor autoprune settings
+
 1.0.1 (2013-05-15)
 ------------------
 

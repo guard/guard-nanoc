@@ -63,6 +63,7 @@ module Guard
       Dir.chdir(@dir) do
         site = ::Nanoc::Site.new('.')
         site.compile
+        self.prune(site)
       end
       self.notify_success
     rescue ::Nanoc::Errors::GenericTrivial => e
@@ -71,6 +72,15 @@ module Guard
     rescue Exception => e
       self.notify_failure
       ::Nanoc::CLI::ErrorHandler.print_error(e)
+    end
+
+    def prune(site)
+      prune_config = site.config.fetch(:prune, {})
+      auto_prune_enabled = prune_config.fetch(:auto_prune, false)
+      if auto_prune_enabled
+        exclude = prune_config.fetch(:exclude, [])
+        ::Nanoc::Extra::Pruner.new(site, :exclude => exclude).run
+      end
     end
 
     def notify_success

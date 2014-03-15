@@ -14,10 +14,6 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install guard-nanoc
-
 ## Usage
 
 Enter the nanoc site directory for which you want to use Guard::Nanoc. Create a Guardfile using `guard init`:

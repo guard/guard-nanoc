@@ -22,10 +22,10 @@ Or install it yourself as:
 
 Enter the nanoc site directory for which you want to use Guard::Nanoc. Create a Guardfile using `guard init`:
 
-    $ guard init nanoc
+    $ bundle exec guard init nanoc
 
 Execute guard:
 
-    $ guard
+    $ bundle exec guard
 
 Whenever you change a file in the nanoc site directory now, the site will be recompiled!

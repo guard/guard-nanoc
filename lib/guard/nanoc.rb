@@ -1,16 +1,16 @@
 # encoding: utf-8
 
 require 'guard'
-require 'guard/guard'
+require 'guard/plugin'
 
 require 'nanoc'
 require 'nanoc/cli'
 
 module Guard
 
-  class Nanoc < Guard
+  class Nanoc < Plugin
 
-    def initialize(watchers=[], options={})
+    def initialize(options={})
       @dir = options[:dir] || '.'
       super
     end

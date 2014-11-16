@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.author        = 'Denis Defreyne'
   s.email         = 'denis.defreyne@stoneship.org'
 
-  s.add_dependency 'guard', '>= 1.8.0'
+  s.add_dependency 'guard', '~> 2.8'
   s.add_dependency 'nanoc', '>= 3.6.3'
 
   s.files         = Dir['[A-Z]*'] + Dir['lib/**/*'] + [ 'guard-nanoc.gemspec' ]

@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.email         = 'denis.defreyne@stoneship.org'
 
   s.add_dependency 'guard', '~> 2.8'
-  s.add_dependency 'nanoc', '>= 3.6.3'
+  s.add_dependency 'nanoc', '~> 3.6'
 
   s.files         = Dir['[A-Z]*'] + Dir['lib/**/*'] + [ 'guard-nanoc.gemspec' ]
   s.require_paths = [ 'lib' ]

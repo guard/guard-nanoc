@@ -1,6 +1,11 @@
 guard-nanoc Release Notes
 =========================
 
+1.0.3 (2014-11-16)
+------------------
+
+* Fix guard 2.8 deprecation warning (guard/guard-nanoc#16)
+
 1.0.2 (2013-11-27)
 ------------------
 

@@ -1,7 +1,6 @@
 # encoding: utf-8
 
-require 'guard'
-require 'guard/plugin'
+require 'guard/compat/plugin'
 
 require 'nanoc'
 require 'nanoc/cli'
@@ -84,13 +83,13 @@ module Guard
     end
 
     def notify_success
-      Notifier.notify('Compilation succeeded', :title => 'nanoc', :image => :success)
-      ::Guard::UI.info 'Compilation succeeded.'
+      Compat::UI.notify('Compilation succeeded', :title => 'nanoc', :image => :success)
+      Compat::UI.info 'Compilation succeeded.'
     end
 
     def notify_failure
-      Notifier.notify('Compilation FAILED', :title => 'nanoc', :image => :failed)
-      ::Guard::UI.error 'Compilation failed!'
+      Compat::UI.notify('Compilation FAILED', :title => 'nanoc', :image => :failed)
+      Compat::UI.error 'Compilation failed!'
     end
 
   end

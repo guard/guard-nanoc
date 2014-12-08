@@ -68,7 +68,7 @@ module Guard
     rescue ::Nanoc::Errors::GenericTrivial => e
       self.notify_failure
       $stderr.puts e.message
-    rescue Exception => e
+    rescue RuntimeError => e
       self.notify_failure
       ::Nanoc::CLI::ErrorHandler.print_error(e)
     end

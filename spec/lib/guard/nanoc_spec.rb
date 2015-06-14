@@ -3,9 +3,9 @@ require "guard/nanoc"
 
 
 RSpec.describe Guard::Nanoc do
-  let!(:site) { instance_double(Nanoc::Site) }
+  let!(:site) { instance_double(Nanoc::Int::Site) }
 
-  let(:site_class) { class_double(Nanoc::Site) }
+  let(:site_class) { class_double(Nanoc::Int::Site) }
 
   before do
     allow(Process).to receive(:fork) do |_args, &block|
@@ -20,7 +20,7 @@ RSpec.describe Guard::Nanoc do
     allow(Guard::Compat::UI).to receive(:error)
     allow(Guard::Compat::UI).to receive(:info)
 
-    stub_const("Nanoc::Site", site_class)
+    stub_const("Nanoc::Int::Site", site_class)
     allow(site_class).to receive(:new).and_return(site)
 
     allow(site).to receive(:compile)
@@ -43,7 +43,7 @@ RSpec.describe Guard::Nanoc do
 
     context "with errors" do
       before do
-        allow(site).to receive(:compile).and_raise(::Nanoc::Errors::GenericTrivial)
+        allow(site).to receive(:compile).and_raise(::Nanoc::Int::Errors::GenericTrivial)
       end
 
       it "outputs failure" do

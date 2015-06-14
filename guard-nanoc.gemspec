@@ -1,11 +1,10 @@
 # encoding: utf-8
 
-$LOAD_PATH.unshift(File.expand_path('../lib/', __FILE__))
-require 'guard/nanoc/version'
+require_relative './lib/guard/nanoc/version'
 
 Gem::Specification.new do |s|
   s.name          = 'guard-nanoc'
-  s.version       = Guard::Nanoc::VERSION
+  s.version       = Guard::GUARD_NANOC_VERSION
   s.homepage      = 'http://nanoc.ws/'
   s.summary       = 'guard gem for nanoc'
   s.description   = 'Automatically rebuilds nanoc sites'

@@ -3,10 +3,6 @@ require "guard/nanoc"
 
 
 RSpec.describe Guard::Nanoc do
-  let!(:site) { instance_double(Nanoc::Site) }
-
-  let(:site_class) { class_double(Nanoc::Site) }
-
   before do
     allow(Process).to receive(:fork) do |_args, &block|
       @_fork_block = block
@@ -19,13 +15,6 @@ RSpec.describe Guard::Nanoc do
     allow(Guard::Compat::UI).to receive(:notify)
     allow(Guard::Compat::UI).to receive(:error)
     allow(Guard::Compat::UI).to receive(:info)
-
-    stub_const("Nanoc::Site", site_class)
-    allow(site_class).to receive(:new).and_return(site)
-
-    allow(site).to receive(:compile)
-    allow(site).to receive(:config).and_return({})
-    allow($stderr).to receive(:puts)
   end
 
   describe "#start" do
@@ -43,7 +32,7 @@ RSpec.describe Guard::Nanoc do
 
     context "with errors" do
       before do
-        allow(site).to receive(:compile).and_raise(::Nanoc::Errors::GenericTrivial)
+        File.write('nanoc.yaml', '[][]]}][]{}][')
       end
 
       it "outputs failure" do

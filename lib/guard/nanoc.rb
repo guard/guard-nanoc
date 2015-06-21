@@ -35,13 +35,13 @@ module Guard
 
     def setup_nanoc_notifications
       @rep_times = {}
-      ::Nanoc::NotificationCenter.on(:compilation_started) do |rep|
+      ::Nanoc::Int::NotificationCenter.on(:compilation_started) do |rep|
         @rep_times[rep.raw_path] = Time.now
       end
-      ::Nanoc::NotificationCenter.on(:compilation_ended) do |rep|
+      ::Nanoc::Int::NotificationCenter.on(:compilation_ended) do |rep|
         @rep_times[rep.raw_path] = Time.now - @rep_times[rep.raw_path]
       end
-      ::Nanoc::NotificationCenter.on(:rep_written) do |rep, path, is_created, is_modified|
+      ::Nanoc::Int::NotificationCenter.on(:rep_written) do |rep, path, is_created, is_modified|
         action = (is_created ? :create : (is_modified ? :update : :identical))
         level  = (is_created ? :high   : (is_modified ? :high   : :low))
         duration = Time.now - @rep_times[rep.raw_path] if @rep_times[rep.raw_path]
@@ -60,15 +60,12 @@ module Guard
 
     def recompile
       Dir.chdir(@dir) do
-        site = ::Nanoc::Site.new('.')
+        site = ::Nanoc::Int::SiteLoader.new.new_from_cwd
         site.compile
         self.prune(site)
       end
       self.notify_success
-    rescue ::Nanoc::Errors::GenericTrivial => e
-      self.notify_failure
-      $stderr.puts e.message
-    rescue RuntimeError => e
+    rescue => e
       self.notify_failure
       ::Nanoc::CLI::ErrorHandler.print_error(e)
     end

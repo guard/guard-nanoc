@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'nanoc'
+gem 'nanoc', github: 'nanoc/nanoc'
 
 group :test do
   gem 'rake'

@@ -60,7 +60,7 @@ module Guard
 
     def recompile
       Dir.chdir(@dir) do
-        site = ::Nanoc::Int::Site.new('.')
+        site = ::Nanoc::Int::SiteLoader.new.new_from_cwd
         site.compile
         self.prune(site)
       end

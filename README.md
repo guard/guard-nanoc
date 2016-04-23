@@ -25,3 +25,15 @@ Execute guard:
     $ bundle exec guard
 
 Whenever you change a file in the nanoc site directory now, the site will be recompiled!
+
+### Viewing pages
+
+To see the site:
+
+    $ bundle exec nanoc view
+
+And visit `localhost:3000` in browser, in rare cases `3000` might be a higher number, it is displayed after running `nanoc view` on the end of the message as `port=3000`.
+
+For best results keep both `guard` and `nanoc view` running at the same time (in separate shell windows/tabs). 
+
+After edditing and saving a file `guard` will recompile required pages, it is required to reload the page in browser so the new content can be served by `nanoc view`.

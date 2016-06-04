@@ -2,7 +2,7 @@
 
 This is a guard for [nanoc](http://nanoc.ws/).
 
-Guard is a framework for listening to filesystem changes and acting upon them. Guard::Nanoc is a plugin for Guard that recompiles nanoc sites on changes.
+`Guard` is a framework for listening to filesystem changes and acting upon them. `Guard::Nanoc` is a plugin for Guard that recompiles Nanoc sites on changes.
 
 ## Installation
 
@@ -16,7 +16,7 @@ And then execute:
 
 ## Usage
 
-Enter the nanoc site directory for which you want to use Guard::Nanoc. Create a Guardfile using `guard init`:
+Enter the nanoc site directory for which you want to use guard-nanoc. Create a Guardfile using `guard init`:
 
     $ bundle exec guard init nanoc
 
@@ -24,16 +24,16 @@ Execute guard:
 
     $ bundle exec guard
 
-Whenever you change a file in the nanoc site directory now, the site will be recompiled!
+Whenever you change a file in the Nanoc site directory now, the site will be recompiled!
 
 ### Viewing pages
 
-To see the site:
+To see the site, run the following:
 
     $ bundle exec nanoc view
 
-And visit `localhost:3000` in browser, in rare cases `3000` might be a higher number, it is displayed after running `nanoc view` on the end of the message as `port=3000`.
+Now you can visit `http://localhost:3000` in browser. (In some cases, the port number might not be `3000`; check what `nanoc view` prints to find out the actual port number.)
 
-For best results keep both `guard` and `nanoc view` running at the same time (in separate shell windows/tabs). 
+For best results, keep both `guard` and `nanoc view` running at the same time, either in separate windows/tabs, or with screen/tmux. 
 
-After edditing and saving a file `guard` will recompile required pages, it is required to reload the page in browser so the new content can be served by `nanoc view`.
+After edditing and saving a file, `guard` will recompile the site, but it is necessary to reload the page in the browser in order to see the new content that is served by `nanoc view`.

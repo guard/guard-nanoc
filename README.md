@@ -6,9 +6,15 @@ This is a guard for [nanoc](http://nanoc.ws/).
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add these lines to your application's Gemfile:
 
-    gem 'guard-nanoc'
+    group :nanoc do
+      gem 'guard-nanoc'
+    end
+
+Unless your Gemfile already specifies a web server, you'll need one as well:
+
+    gem 'adsf'
 
 And then execute:
 
@@ -20,20 +26,17 @@ Enter the nanoc site directory for which you want to use guard-nanoc. Create a G
 
     $ bundle exec guard init nanoc
 
-Execute guard:
+Then run:
 
-    $ bundle exec guard
+    $ bundle exec nanoc live
 
-Whenever you change a file in the Nanoc site directory now, the site will be recompiled!
+This will start a web server, like `nanoc view` would, and watch for changes
+to the site in the background, like `guard start` would. Whenever you change
+a file in the Nanoc site directory now, the site will be recompiled!
+Visit `http://localhost:3000` in browser to see it. (In some cases, the port
+number might not be `3000`; check what `nanoc live` prints to find out
+the actual port number.)
 
-### Viewing pages
-
-To see the site, run the following:
-
-    $ bundle exec nanoc view
-
-Now you can visit `http://localhost:3000` in browser. (In some cases, the port number might not be `3000`; check what `nanoc view` prints to find out the actual port number.)
-
-For best results, keep both `guard` and `nanoc view` running at the same time, either in separate windows/tabs, or with screen/tmux. 
-
-After edditing and saving a file, `guard` will recompile the site, but it is necessary to reload the page in the browser in order to see the new content that is served by `nanoc view`.
+After editing and saving a file, `nanoc live` will recompile the site, but it
+is necessary to reload the page in the browser in order to see the new content
+that is served by `nanoc live`.

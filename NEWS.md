@@ -1,6 +1,11 @@
 guard-nanoc Release Notes
 =========================
 
+2.1.0 (2016-08-21)
+------------------
+
+* Add `nanoc live` command, combining guard-nanoc with `nanoc view` [whitequark]
+
 2.0.0 (2015-11-07)
 ------------------
 

@@ -6,7 +6,7 @@ This is a guard for [nanoc](http://nanoc.ws/).
 
 ## Installation
 
-Add these lines to your application's Gemfile:
+Add the `guard-nanoc` gem inside the `nanoc` group to your application's Gemfile:
 
     group :nanoc do
       gem 'guard-nanoc'
@@ -15,6 +15,10 @@ Add these lines to your application's Gemfile:
 Unless your Gemfile already specifies a web server, you'll need one as well:
 
     gem 'adsf'
+
+Lastly, ensure that Nanoc is at least version 4.3:
+
+    gem 'nanoc', '~> 4.3'
 
 And then execute:
 

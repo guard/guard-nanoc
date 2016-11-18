@@ -6,16 +6,14 @@ require 'nanoc'
 require 'nanoc/cli'
 
 module Guard
-
   class Nanoc < Plugin
-
     def initialize(options={})
       @dir = options[:dir] || '.'
       super
     end
 
     def start
-      self.setup_nanoc_notifications
+      self.setup_listeners
       self.recompile_in_subprocess
     end
 
@@ -33,20 +31,12 @@ module Guard
 
   protected
 
-    def setup_nanoc_notifications
-      @rep_times = {}
-      ::Nanoc::Int::NotificationCenter.on(:compilation_started) do |rep|
-        @rep_times[rep.raw_path] = Time.now
-      end
-      ::Nanoc::Int::NotificationCenter.on(:compilation_ended) do |rep|
-        @rep_times[rep.raw_path] = Time.now - @rep_times[rep.raw_path]
-      end
-      ::Nanoc::Int::NotificationCenter.on(:rep_written) do |rep, path, is_created, is_modified|
-        action = (is_created ? :create : (is_modified ? :update : :identical))
-        level  = (is_created ? :high   : (is_modified ? :high   : :low))
-        duration = Time.now - @rep_times[rep.raw_path] if @rep_times[rep.raw_path]
-        ::Nanoc::CLI::Logger.instance.file(level, action, path, duration)
-      end
+    def setup_listeners
+      ::Nanoc::CLI.setup
+
+      ::Nanoc::CLI::Commands::Compile::FileActionPrinter
+        .new(reps: [])
+        .start
     end
 
     def recompile_in_subprocess
@@ -78,7 +68,5 @@ module Guard
       Compat::UI.notify('Compilation FAILED', :title => 'nanoc', :image => :failed)
       Compat::UI.error 'Compilation failed!'
     end
-
   end
-
 end

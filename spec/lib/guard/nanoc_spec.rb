@@ -1,7 +1,6 @@
 require "guard/compat/test/helper"
 require "guard/nanoc"
 
-
 RSpec.describe Guard::Nanoc do
   before do
     allow(Process).to receive(:fork) do |_args, &block|
@@ -32,7 +31,7 @@ RSpec.describe Guard::Nanoc do
 
     context "with errors" do
       before do
-        File.write('nanoc.yaml', '[][]]}][]{}][')
+        File.write('layouts/default.html', '<%= raise "boom" %>')
       end
 
       it "outputs failure" do

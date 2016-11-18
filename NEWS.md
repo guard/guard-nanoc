@@ -1,5 +1,10 @@
 # guard-nanoc Release Notes
 
+## 2.1.1 (2016-11-18)
+
+* Fixed compatibility with Nanoc 4.3.8 (#32)
+* Fixed issue which would cause “constants redefined” warnings to be printed (#26, #34)
+
 ## 2.1.0 (2016-08-21)
 
 * Add `nanoc live` command, combining guard-nanoc with `nanoc view` [whitequark]

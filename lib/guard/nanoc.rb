@@ -18,15 +18,15 @@ module Guard
     end
 
     def run_all
-      self.recompile
+      self.recompile_in_subprocess
     end
 
     def run_on_changes(paths)
-      self.recompile
+      self.recompile_in_subprocess
     end
 
     def run_on_removals(paths)
-      self.recompile
+      self.recompile_in_subprocess
     end
 
   protected

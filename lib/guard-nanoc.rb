@@ -1,4 +1,5 @@
 require 'nanoc'
+require 'nanoc/cli'
 
 Nanoc::CLI.after_setup do
   live_command_path =

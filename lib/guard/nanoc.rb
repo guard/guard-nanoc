@@ -34,7 +34,7 @@ module Guard
     def setup_listeners
       ::Nanoc::CLI.setup
 
-      ::Nanoc::CLI::Commands::Compile::FileActionPrinter
+      ::Nanoc::CLI::Commands::CompileListeners::FileActionPrinter
         .new(reps: [])
         .start
     end

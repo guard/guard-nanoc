@@ -4,6 +4,8 @@ require 'guard/compat/plugin'
 
 require 'nanoc'
 require 'nanoc/cli'
+require 'nanoc/cli/commands/compile_listeners/abstract'
+require 'nanoc/cli/commands/compile_listeners/file_action_printer'
 
 module Guard
   class Nanoc < Plugin

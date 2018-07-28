@@ -6,9 +6,10 @@ in the background (like `guard start` would). See the documentation of those
 two commands for details. The options are forwarded to `nanoc view` only.
 EOS
 
-required :H, :handler, 'specify the handler to use (webrick/mongrel/...)'
-required :o, :host,    'specify the host to listen on (default: 0.0.0.0)'
-required :p, :port,    'specify the port to listen on (default: 3000)'
+required :H, :handler,       'specify the handler to use (webrick/mongrel/...)'
+required :o, :host,          'specify the host to listen on (default: 0.0.0.0)'
+required :p, :port,          'specify the port to listen on (default: 3000)'
+flag     :L, :'live-reload', 'reload on changes'
 
 module Nanoc::CLI::Commands
   class Live < ::Nanoc::CLI::CommandRunner

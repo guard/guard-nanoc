@@ -7,6 +7,13 @@ require 'nanoc/cli'
 
 module Guard
   class Nanoc < Plugin
+    def self.live_cmd
+      @_live_cmd ||= begin
+        path = File.join(File.dirname(__FILE__), '..', 'nanoc', 'cli', 'commands', 'live.rb')
+        ::Nanoc::CLI.load_command_at(path)
+      end
+    end
+
     def initialize(options={})
       @dir = options[:dir] || '.'
       super
@@ -69,4 +76,8 @@ module Guard
       Compat::UI.error 'Compilation failed!'
     end
   end
+end
+
+::Nanoc::CLI.after_setup do
+  ::Nanoc::CLI.add_command(Guard::Nanoc.live_cmd)
 end
